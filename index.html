@@ -15,8 +15,11 @@
         <div class="nav-bar"></div>
         <div class="cart">Cart{{ cart }}</div>
         
-        <product-display :premium="premium"></product-display>
-        <product-display></product-display>
+        <product-display :premium="premium">
+            <product-details></product-details>
+        </product-display>
+        
+        
         
     </div>
     </div>
@@ -24,6 +27,7 @@
 
     <!-- Import Js -->
     <script src="./components/ProductDisplay.js"></script>
+    <script src="./components/product-details.js"></script>
     <script src="./main.js"></script>
 </body>
 

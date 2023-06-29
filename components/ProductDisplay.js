@@ -16,9 +16,7 @@ const productDisplay = {
             <p v-if="inventory > 10"> In Stock</p>
             <p v-else>Out of Stock</p>
             <p>Shipping: {{shipping}}</p>
-            <ul>
-                <li v-for="detail in details">{{detail}}</li>
-            </ul>
+            
             <div v-for="(variant,index) in variants" :key="variant.id" 
         @mouseover="updateVariant(index)" 
                 class="color-circle" :style="{backgroundColor: variant.color}">
@@ -31,7 +29,8 @@ const productDisplay = {
 </div>
 `,
 props: {
-    premium: Boolean
+    premium: Boolean,
+    details: String
 },
 setup(props) {
     const product = ref('Boots')
