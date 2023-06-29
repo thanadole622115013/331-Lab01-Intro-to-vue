@@ -1,15 +1,26 @@
 const { createApp, ref, computed} = Vue;
 const app = createApp({
     setup(){
-        const cart = ref(0)
+        const cart = ref([])
+        
         const premium = ref(true)
+       function updateCart(id){
+        cart.value.push(id)
+       }
+       function spliceCart(id){
+        cart.value.push(id)
+       }
+       
+
         return {
             cart,
-            premium
+            premium,
+            updateCart,
+            spliceCart
         }
     }
 })
 
 app.component('product-display', productDisplay)
-app.component('product-detail', productDetail)
+// app.component('product-detail', product-detail)
 app.mount('#app')

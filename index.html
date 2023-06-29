@@ -13,12 +13,24 @@
 <body>
     <div id="app">
         <div class="nav-bar"></div>
-        <div class="cart">Cart{{ cart }}</div>
+        <div class="cart"
+        v-if="cart != null"
+        >Cart{{ cart + ''}}
+        </div>
+        <div
+        v-else
+        >Cart{{" " + cart + " " }}
+        </div>
         
-        <product-display :premium="premium">
-            <product-details></product-details>
+        <product-display 
+        :premium="premium" 
+        @add-to-cart="updateCart"
+        @splice-to-cart="spliceCart"
+        >
+            
         </product-display>
-        
+
+        <product-details></product-details>
         
         
     </div>

@@ -25,6 +25,9 @@ const productDisplay = {
         <button class="button" :disabled='!inStock' @click="addToCart"
         :class="{disabledButton: !inStock}">Add To Cart
         </button>
+        <button class="button" @click="spliceToCart"
+        :class="">Splice To Cart
+        </button>
     </div>
 </div>
 `,
@@ -32,7 +35,7 @@ props: {
     premium: Boolean,
     details: String
 },
-setup(props) {
+setup(props, { emit }) {
     const product = ref('Boots')
         const brand = ref('SE 331')
         // const image = ref('./assets/images/socks_green.jpg')
@@ -49,11 +52,14 @@ setup(props) {
             { id: 2235, color: 'blue', image: '/assets/images/socks_blue.jpg', quantity: 0}
         ])
         const selectedVariant = ref(0)
-        const cart = ref(0)
+        // const cart = ref(0)
         
             function addToCart(){
-            cart.value +=1
+            emit('add-To-Cart', variants.value[selectedVariant.value].id)
             }
+            function spliceToCart(){
+                emit('splice-To-Cart', variants.value[selectedVariant.value].id)
+                }
 
             const title = computed(() => {
                 return brand.value + ' ' + product.value
@@ -91,7 +97,9 @@ setup(props) {
             addToCart,
             updateImage,
             updateVariant,
-            shipping
+            shipping,
+            spliceToCart,
+            
         }   
     }
 }
